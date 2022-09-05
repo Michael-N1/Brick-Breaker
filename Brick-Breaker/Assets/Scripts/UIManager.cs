@@ -7,20 +7,24 @@ public class UIManager : MonoBehaviour
 {
     public GameObject startPanel;
     public GameObject levelTransitionPanel;
+    public GameObject endPanel;
     public TMP_Text pressSpaceText;
     public TMP_Text levelClearedText;
+    public TMP_Text pausedText;
 
     // Start is called before the first frame update
     void Start() {
         startPanel.SetActive(true);
         pressSpaceText.gameObject.SetActive(false);
         levelTransitionPanel.gameObject.SetActive(false);
+        pausedText.gameObject.SetActive(false);
+        endPanel.SetActive(false);
     }
 
     public void StartButton() {
         startPanel.SetActive(false);
         pressSpaceText.gameObject.SetActive(true);
-        FindObjectOfType<GameManager>().StartGame();
+        FindObjectOfType<GameManager>().StartNextLevel();
     }
 
     public void FinishLevel(int levelNum) {
@@ -31,4 +35,16 @@ public class UIManager : MonoBehaviour
         levelTransitionPanel.gameObject.SetActive(true);
     }
 
+    public void Pause(bool pause) {
+        if (pause) {
+            pausedText.gameObject.SetActive(true);
+        }
+        else {  // resume
+            pausedText.gameObject.SetActive(false);
+        }
+    }
+
+    public void EndGame() {
+        endPanel.SetActive(true);
+    }
 }
