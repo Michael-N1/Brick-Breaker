@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class Ball : MonoBehaviour
 {
+    static float DEFAULT_SPEED = 75f;
+    
     private GameManager gameManager;
     private Rigidbody2D rigidBody;
     private AudioSource audioSource;
@@ -11,11 +13,10 @@ public class Ball : MonoBehaviour
     private Bar bar;
 
     private bool isStatic = true; 
-    public float speed = 75;  // TODO: remove magic number
+    public float speed = DEFAULT_SPEED;
 
     // Start is called before the first frame update
-    void Start()
-    {
+    void Start() {
         vecInitPos = transform.position;
         rigidBody = GetComponent<Rigidbody2D>();
         audioSource = GetComponent<AudioSource>();  // audio = BrickBreak
@@ -82,5 +83,4 @@ public class Ball : MonoBehaviour
     public bool IsStatic() {
         return isStatic;
     }
-    
 }

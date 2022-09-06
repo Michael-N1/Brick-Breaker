@@ -7,8 +7,7 @@ public class BrickGroup : MonoBehaviour
     private GameManager manager = null;
 
     // Start is called before the first frame update
-    void Start()
-    {
+    void Start() {
         manager = FindObjectOfType<GameManager>();
     }
 
