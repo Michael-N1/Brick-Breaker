@@ -35,7 +35,7 @@ public class UIManager : MonoBehaviour
     public void FinishLevel(int levelNum) {
         levelNum++;  // ++ because the levels are 0-indexed,
                      // unlike what the user expects
-        levelClearedText.text = "You cleared level: " + levelNum.ToString();
+        levelClearedText.text = "You cleared level " + levelNum.ToString();
         pressSpaceText.gameObject.SetActive(true);
         levelTransitionPanel.gameObject.SetActive(true);
     }

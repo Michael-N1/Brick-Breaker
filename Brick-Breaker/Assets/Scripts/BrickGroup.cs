@@ -5,10 +5,12 @@ using UnityEngine;
 public class BrickGroup : MonoBehaviour
 {
     private GameManager manager = null;
+    protected int brickAmount;
 
     // Start is called before the first frame update
     void Start() {
         manager = FindObjectOfType<GameManager>();
+        brickAmount = transform.childCount;
     }
 
     private void OnDisable() {
@@ -16,9 +18,11 @@ public class BrickGroup : MonoBehaviour
     }
 
     public void OnChildCollision() {
-        if (transform.childCount <= 1) {  // ball collided with the last brick
+        brickAmount--;
+        if (brickAmount == 0) {  // ball collided with the last brick
             manager.DecrementBrickGroup();
             Destroy(gameObject);
         }
     }
+
 }
