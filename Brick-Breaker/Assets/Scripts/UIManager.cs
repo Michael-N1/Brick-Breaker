@@ -9,9 +9,11 @@ public class UIManager : MonoBehaviour
 
     public GameObject startPanel;
     public GameObject levelTransitionPanel;
-    public GameObject endPanel;
+    public GameObject victoryPanel;
+    public GameObject lossPanel;
     public GameObject muteAudioToggle;
     
+
     public TMP_Text pressSpaceText;
     public TMP_Text levelClearedText;
     public TMP_Text pausedText;
@@ -20,16 +22,13 @@ public class UIManager : MonoBehaviour
     void Start() {
         gameManager = FindObjectOfType<GameManager>();
         startPanel.SetActive(true);
-        pressSpaceText.gameObject.SetActive(false);
-        levelTransitionPanel.gameObject.SetActive(false);
-        pausedText.gameObject.SetActive(false);
-        endPanel.SetActive(false);
     }
 
     public void StartButton() {
         startPanel.SetActive(false);
-        pressSpaceText.gameObject.SetActive(true);
         muteAudioToggle.SetActive(false);
+        pressSpaceText.gameObject.SetActive(true);
+        gameManager.healthBar.gameObject.SetActive(true);
         gameManager.StartNextLevel();
     }
 
@@ -52,8 +51,13 @@ public class UIManager : MonoBehaviour
         }
     }
 
-    public void EndGame() {
-        endPanel.SetActive(true);
+    public void EndGame(bool isVictory) {
+        if (isVictory) {
+            victoryPanel.SetActive(true);
+        }
+        else {
+            lossPanel.SetActive(true);
+        }
     }
 
     public void MuteToggle(bool mute) {

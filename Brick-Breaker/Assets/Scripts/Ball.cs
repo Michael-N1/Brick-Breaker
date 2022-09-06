@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class Ball : MonoBehaviour
 {
+    private GameManager gameManager;
     private Rigidbody2D rigidBody;
     private AudioSource audioSource;
     private Vector2 vecInitPos;
@@ -19,6 +20,7 @@ public class Ball : MonoBehaviour
         rigidBody = GetComponent<Rigidbody2D>();
         audioSource = GetComponent<AudioSource>();  // audio = BrickBreak
         bar = FindObjectOfType<Bar>();
+        gameManager = FindObjectOfType<GameManager>();
     }
 
     /// <summary>
@@ -57,6 +59,9 @@ public class Ball : MonoBehaviour
         }
         else if (other.gameObject.name.StartsWith("Brick")) {
             audioSource.Play();
+        }
+        else if(other.gameObject.name == "WallBottom") {
+            gameManager.DecrementLife();
         }
     }
 

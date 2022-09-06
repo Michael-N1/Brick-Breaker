@@ -2,14 +2,14 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-// const float SPEED = 50;  // bar movement speed
+// const float SPEED = 75;  // bar movement speed
 
 public class Bar : MonoBehaviour
 {
     private Rigidbody2D rigidBody;
     private Vector2 vecInitPos;
     private AudioSource audioSource;
-    public float speed = 50;  // TODO: remove the magic number
+    public float speed = 75;  // TODO: remove the magic number
 
     void Awake() {  // using awake since it runs before FixedUpdate(), unlike Start
         rigidBody = GetComponent<Rigidbody2D>();

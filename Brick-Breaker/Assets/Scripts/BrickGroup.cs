@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class BlockGroup : MonoBehaviour
+public class BrickGroup : MonoBehaviour
 {
     private GameManager manager = null;
 
@@ -17,9 +17,8 @@ public class BlockGroup : MonoBehaviour
     }
 
     public void OnChildCollision() {
-        if (transform.childCount <= 1) {  // ball collided with the last block
-            // gameObject.SetActive(false);
-            manager.groupBlocksLeft--;
+        if (transform.childCount <= 1) {  // ball collided with the last brick
+            manager.DecrementBrickGroup();
             Destroy(gameObject);
         }
     }

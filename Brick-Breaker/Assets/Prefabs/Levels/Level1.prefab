@@ -47,6 +47,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Group_4x1_Blue
       objectReference: {fileID: 0}
+    - target: {fileID: 1722188411679959372, guid: 707a0e7ed149a4845aeaea06676d7c05, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 6745226206829222958, guid: 707a0e7ed149a4845aeaea06676d7c05, type: 3}
       propertyPath: m_RootOrder
       value: 3
@@ -362,6 +366,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Group_1x4_Blue
       objectReference: {fileID: 0}
+    - target: {fileID: 6325459518200547189, guid: c3b024888a4dfdc43841efc3b371ba43, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c3b024888a4dfdc43841efc3b371ba43, type: 3}
 --- !u!4 &1978420468409209539 stripped
@@ -396,6 +404,10 @@ PrefabInstance:
     - target: {fileID: 1722188411679959372, guid: 707a0e7ed149a4845aeaea06676d7c05, type: 3}
       propertyPath: m_Name
       value: Group_4x1_Blue (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 1722188411679959372, guid: 707a0e7ed149a4845aeaea06676d7c05, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6745226206829222958, guid: 707a0e7ed149a4845aeaea06676d7c05, type: 3}
       propertyPath: m_RootOrder
@@ -712,6 +724,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Group_1x4_Blue (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 6325459518200547189, guid: c3b024888a4dfdc43841efc3b371ba43, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c3b024888a4dfdc43841efc3b371ba43, type: 3}
 --- !u!4 &1978420469329036294 stripped
@@ -806,6 +822,10 @@ PrefabInstance:
     - target: {fileID: 6325459518200547189, guid: c3b024888a4dfdc43841efc3b371ba43, type: 3}
       propertyPath: m_Name
       value: Group_1x4_Blue (2)
+      objectReference: {fileID: 0}
+    - target: {fileID: 6325459518200547189, guid: c3b024888a4dfdc43841efc3b371ba43, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c3b024888a4dfdc43841efc3b371ba43, type: 3}

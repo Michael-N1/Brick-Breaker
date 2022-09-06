@@ -11,8 +11,13 @@ public class GameManager : MonoBehaviour
     private Ball ball;
     private Bar bar;
     private UIManager ui;
+    private int brickGroupsLeft;
+
     private bool isGameRunning = false;
-    public int groupBlocksLeft;
+
+    public AudioSource loss;
+    public HealthBar healthBar;
+
     
     // Start is called before the first frame update
     void Start()
@@ -40,24 +45,29 @@ public class GameManager : MonoBehaviour
             }
         }
         else if (Input.GetKeyDown("escape")) {
-            Pause();
+            isGameRunning = Pause(isGameRunning);
         }
     }
 
-    private void Pause() {
-        if (isGameRunning) {
+    /// <summary>
+    /// Pauses and resumes the game
+    /// </summary>
+    /// <param name="pause">true will pause the game. false will resume</param>
+    /// <returns>true if the game is running</returns>
+    private bool Pause(bool pause) {
+        if (pause) {
             Time.timeScale = 0;
             ui.Pause(true);
-            isGameRunning = false;
         }
-        else {
-            // if the game is paused and hasn't ended, resume it
-            if (ui.pausedText.gameObject.activeSelf && !ui.endPanel.activeSelf){
+        else {  // resume
+            if (ui.pausedText.gameObject.activeSelf) {
+
                 ui.Pause(false);
                 Time.timeScale = 1;
-                isGameRunning = true;
+                return true;
             }
         }
+        return false;
     }
 
     /// <summary>
@@ -65,7 +75,7 @@ public class GameManager : MonoBehaviour
     /// spawns the next one only if it's necessary.
     /// </summary>
     public void UpdateLevel() {
-        if (groupBlocksLeft  == 0) {  // level is over
+        if (brickGroupsLeft  == 0) {  // level is over
             ui.FinishLevel(spawner.GetCurrLevelNum());
             ball.gameObject.SetActive(false);
             bar.gameObject.SetActive(false);
@@ -79,17 +89,20 @@ public class GameManager : MonoBehaviour
         }
         ball.Reset();
         bar.Reset();
-        groupBlocksLeft = spawner.SpawnNextLevel();
-        if (groupBlocksLeft == -1) {
-            EndGame();
+        brickGroupsLeft = spawner.SpawnNextLevel();
+        if (brickGroupsLeft == -1) {
+            EndGame(true);
         }
         isGameRunning = true;
     }
 
-    public void EndGame() {
-        ui.EndGame();
-        isGameRunning = false;
-        Pause();
+    /// <summary>
+    /// End the game with the appropriate end game panel.
+    /// </summary>
+    /// <param name="isVictory">true if the game was won</param>
+    public void EndGame(bool isVictory) {
+        ui.EndGame(isVictory);
+        isGameRunning = Pause(true);
         StartCoroutine(Waiter());
         Application.Quit();
     }
@@ -105,5 +118,17 @@ public class GameManager : MonoBehaviour
         else {
             AudioListener.volume = 1;
         }
+    }
+
+    public void DecrementLife() {
+        int livesLeft = healthBar.DecrementLife();
+        loss.Play();
+        if (livesLeft == 0) {
+            EndGame(false);
+        }
+    }
+
+    public void DecrementBrickGroup() {
+        brickGroupsLeft--;
     }
 }
