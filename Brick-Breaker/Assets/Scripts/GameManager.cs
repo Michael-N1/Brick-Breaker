@@ -32,7 +32,7 @@ public class GameManager : MonoBehaviour
             else if (ui.levelTransitionPanel.activeSelf) {
                 StartNextLevel();
             }
-            else if (ball.IsStatic()) {
+            else if (ball.IsStatic() && isGameRunning) {
                 ball.StartMovement();
                 if (ui.pressSpaceText.gameObject.activeSelf) {
                     ui.pressSpaceText.gameObject.SetActive(false);
@@ -87,13 +87,23 @@ public class GameManager : MonoBehaviour
     }
 
     public void EndGame() {
-        Pause();
         ui.EndGame();
+        isGameRunning = false;
+        Pause();
         StartCoroutine(Waiter());
         Application.Quit();
     }
 
     IEnumerator Waiter() {
         yield return new WaitForSeconds(7);
+    }
+
+    public void MuteToggle(bool mute) {
+        if (mute) {
+            AudioListener.volume = 0;
+        }
+        else {
+            AudioListener.volume = 1;
+        }
     }
 }

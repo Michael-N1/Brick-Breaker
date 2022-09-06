@@ -5,15 +5,20 @@ using TMPro;
 
 public class UIManager : MonoBehaviour
 {
+    private GameManager gameManager;
+
     public GameObject startPanel;
     public GameObject levelTransitionPanel;
     public GameObject endPanel;
+    public GameObject muteAudioToggle;
+    
     public TMP_Text pressSpaceText;
     public TMP_Text levelClearedText;
     public TMP_Text pausedText;
 
     // Start is called before the first frame update
     void Start() {
+        gameManager = FindObjectOfType<GameManager>();
         startPanel.SetActive(true);
         pressSpaceText.gameObject.SetActive(false);
         levelTransitionPanel.gameObject.SetActive(false);
@@ -24,7 +29,8 @@ public class UIManager : MonoBehaviour
     public void StartButton() {
         startPanel.SetActive(false);
         pressSpaceText.gameObject.SetActive(true);
-        FindObjectOfType<GameManager>().StartNextLevel();
+        muteAudioToggle.SetActive(false);
+        gameManager.StartNextLevel();
     }
 
     public void FinishLevel(int levelNum) {
@@ -38,13 +44,19 @@ public class UIManager : MonoBehaviour
     public void Pause(bool pause) {
         if (pause) {
             pausedText.gameObject.SetActive(true);
+            muteAudioToggle.SetActive(true);
         }
         else {  // resume
             pausedText.gameObject.SetActive(false);
+            muteAudioToggle.SetActive(false);
         }
     }
 
     public void EndGame() {
         endPanel.SetActive(true);
+    }
+
+    public void MuteToggle(bool mute) {
+        gameManager.MuteToggle(mute);
     }
 }

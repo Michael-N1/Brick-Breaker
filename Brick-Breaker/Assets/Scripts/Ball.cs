@@ -7,6 +7,8 @@ public class Ball : MonoBehaviour
     private Rigidbody2D rigidBody;
     private AudioSource audioSource;
     private Vector2 vecInitPos;
+    private Bar bar;
+
     private bool isStatic = true; 
     public float speed = 75;  // TODO: remove magic number
 
@@ -16,6 +18,17 @@ public class Ball : MonoBehaviour
         vecInitPos = transform.position;
         rigidBody = GetComponent<Rigidbody2D>();
         audioSource = GetComponent<AudioSource>();  // audio = BrickBreak
+        bar = FindObjectOfType<Bar>();
+    }
+
+    /// <summary>
+    /// Move ball with bar at the beginning of a level.
+    /// </summary>
+    void FixedUpdate() {
+        if (isStatic) {
+            transform.position = new Vector2(
+                bar.gameObject.transform.position.x, transform.position.y);
+        }
     }
 
     /// <summary>
