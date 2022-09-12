@@ -5,4 +5,4 @@
  
  Play [here](https://michael-n1.itch.io/brick-breaker) (play online, no download required).
 
- ![Cover](./Brick-Breaker/Assets/Cover%20Image.png)
+ ![Cover](./Brick-Breaker/Assets/level1.gif)
